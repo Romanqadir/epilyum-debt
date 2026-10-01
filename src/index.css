@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Epilyum design tokens
+
+   One navy family carries the whole interface: a deep navy for structure,
+   a mid blue for anything actionable, and a pale periwinkle for the places
+   the eye should land. Neutrals are tinted toward the same hue so nothing
+   reads as a borrowed grey.
+   ========================================================================== */
+
+@theme {
+  /* type */
+  --font-sans: "IBM Plex Sans Arabic", "IBM Plex Sans", system-ui, sans-serif;
+  --font-num:  "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* structure */
+  --color-navy-900: #071a44;
+  --color-navy-800: #0d2358;
+  --color-navy-700: #14306b;
+
+  /* action */
+  --color-brand-700: #1d3a78;
+  --color-brand-600: #27478d;
+  --color-brand-500: #3457a5;
+
+  /* highlight */
+  --color-accent-400: #7fa4f5;
+  --color-accent-300: #a4c0ff;
+  --color-accent-200: #c6d7ff;
+  --color-accent-100: #e4ecff;
+
+  /* surfaces + text */
+  --color-canvas:  #f4f6fb;
+  --color-surface: #ffffff;
+  --color-line:    #e3e9f5;
+  --color-line-strong: #ccd6ea;
+  --color-ink:     #0b1f4d;
+  --color-muted:   #5a6b92;
+  --color-faint:   #8494b5;
+
+  /* meaning */
+  --color-pos: #067647;
+  --color-pos-soft: #e7f6ee;
+  --color-neg: #b42318;
+  --color-neg-soft: #fdeceb;
+  --color-warn: #b54708;
+
+  /* depth */
+  --shadow-card: 0 1px 2px rgba(7, 26, 68, .05), 0 10px 28px -16px rgba(7, 26, 68, .18);
+  --shadow-pop:  0 12px 40px -12px rgba(7, 26, 68, .28);
+}
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Latin numerals stay upright, aligned and tabular inside RTL text. */
+.num {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  direction: ltr;
+  unicode-bidi: isolate;
+  letter-spacing: -0.01em;
+}
+
+/* Kurdish headings want a touch less tracking than the Latin default. */
+.head { letter-spacing: -0.015em; }
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+::selection { background: var(--color-accent-200); color: var(--color-navy-900); }
+
+/* A quiet scrollbar, so long tables don't shout. */
+* { scrollbar-width: thin; scrollbar-color: var(--color-line-strong) transparent; }
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb {
+  background: var(--color-line-strong);
+  border: 3px solid transparent;
+  border-radius: 99px;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-track { background: transparent; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
